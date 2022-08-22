@@ -385,6 +385,14 @@ export class ListingPageComponent extends Component {
           <span className={css.separator}>•</span>
         </span>
       ) : null;
+      
+    const bikeSize =
+      publicData && publicData.bikeSize ? (
+          <span>
+            {bikeSizeLabel(bikeSizeOptions, publicData.bikeSize)}
+            <span className={css.separator}>•</span>
+          </span>
+      ) : null;
 
     return (
       <Page

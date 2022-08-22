@@ -74,10 +74,29 @@ export const filters = [
     config: {},
   },
   {
+    id: 'bikeSize',
+    label: 'bikeSize',
+    type: 'SelectSingleFilter',
+    group: 'primary',
+    queryParamNames: ['pub_bikeSize'],
+
+    config: {
+      // Schema type is enum for SelectSingleFilter
+      options: [
+        { key: 'xs', label: 'XS' },
+        { key: 's', label: 'S' },
+        { key: 'm', label: 'M' },
+        { key: 'l', label: 'L' },
+        { key: 'xl', label: 'XL'},
+        { key: 'xl+', label: 'XL+'}
+      ],
+    },
+  },
+  {
     id: 'category',
     label: 'Category',
-    type: 'SelectMultipleFilter',
-    group: 'secondary',
+    type: 'SelectSingleFilter',
+    group: 'primary',
     queryParamNames: ['pub_category'],
     config: {
       // "key" is the option you see in Flex Console.

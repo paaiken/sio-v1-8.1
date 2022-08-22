@@ -8,6 +8,7 @@ import { propTypes } from '../../util/types';
 import { maxLength, required, composeValidators } from '../../util/validators';
 import { Form, Button, FieldTextInput } from '../../components';
 import CustomCategorySelectFieldMaybe from './CustomCategorySelectFieldMaybe';
+import CustomCategorySelectFieldMaybeSZ from './CustomCategorySelectFieldMaybeSZ';
 
 import css from './EditListingDescriptionForm.module.css';
 
@@ -19,6 +20,7 @@ const EditListingDescriptionFormComponent = props => (
     render={formRenderProps => {
       const {
         categories,
+        bikeSizes,
         className,
         disabled,
         ready,
@@ -87,6 +89,7 @@ const EditListingDescriptionFormComponent = props => (
           {errorMessageCreateListingDraft}
           {errorMessageUpdateListing}
           {errorMessageShowListing}
+
           <FieldTextInput
             id="title"
             name="title"
@@ -99,20 +102,17 @@ const EditListingDescriptionFormComponent = props => (
             autoFocus
           />
 
-          <FieldTextInput
-            id="description"
-            name="description"
-            className={css.description}
-            type="textarea"
-            label={descriptionMessage}
-            placeholder={descriptionPlaceholderMessage}
-            validate={composeValidators(required(descriptionRequiredMessage))}
-          />
-
           <CustomCategorySelectFieldMaybe
             id="category"
             name="category"
             categories={categories}
+            intl={intl}
+          />
+
+          <CustomCategorySelectFieldMaybeSZ
+            id="bikeSize"
+            name="bikeSize"
+            bikeSizes={bikeSizes}
             intl={intl}
           />
 
@@ -153,6 +153,13 @@ EditListingDescriptionFormComponent.propTypes = {
       label: string.isRequired,
     })
   ),
+  bikeSizes: arrayOf(
+    shape({
+      key: string.isRequired,
+      label: string.isRequired,
+    })
+  ),
+
 };
 
 export default compose(injectIntl)(EditListingDescriptionFormComponent);
