@@ -28,7 +28,7 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { description, title, publicData } = currentListing.attributes;
+  const {title, publicData} = currentListing.attributes;
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -40,22 +40,24 @@ const EditListingDescriptionPanel = props => {
     <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
   );
 
+
   const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
+  const bikeSizeOptions = findOptionsForSelectFilter('bikeSize', config.custom.filters);
+
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
+
       <EditListingDescriptionForm
         className={css.form}
-        initialValues={{ title, description, category: publicData.category }}
+        initialValues={{ title, category: publicData.category, bikeSize: publicData.bikeSize}}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description, category } = values;
+          const {title, category, bikeSize} = values;
           const updateValues = {
             title: title.trim(),
-            description,
-            publicData: { category },
+            publicData: {bikeSize, category},
           };
-
           onSubmit(updateValues);
         }}
         onChange={onChange}
@@ -65,9 +67,11 @@ const EditListingDescriptionPanel = props => {
         updateInProgress={updateInProgress}
         fetchErrors={errors}
         categories={categoryOptions}
+        bikeSizes={bikeSizeOptions}
       />
     </div>
   );
+
 };
 
 EditListingDescriptionPanel.defaultProps = {

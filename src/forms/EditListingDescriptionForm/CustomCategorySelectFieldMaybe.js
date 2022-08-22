@@ -18,6 +18,7 @@ const CustomCategorySelectFieldMaybe = props => {
     })
   );
   return categories ? (
+
     <FieldSelect
       className={css.category}
       name={name}

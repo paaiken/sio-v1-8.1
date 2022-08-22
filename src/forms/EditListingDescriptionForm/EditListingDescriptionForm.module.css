@@ -41,6 +41,9 @@
 .category {
   composes: formMargins;
 }
+.bikeSize {
+  composes: formMargins;
+}
 
 .submitButton {
   margin-top: auto;
