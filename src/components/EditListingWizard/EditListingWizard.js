@@ -76,7 +76,7 @@ const tabLabel = (intl, tab) => {
 const tabCompleted = (tab, listing) => {
   const {
     availabilityPlan,
-    description,
+    
     geolocation,
     price,
     title,
@@ -86,7 +86,7 @@ const tabCompleted = (tab, listing) => {
 
   switch (tab) {
     case DESCRIPTION:
-      return !!(description && title);
+      return !!(title);
     case LOCATION:
       return !!(geolocation && publicData && publicData.location && publicData.location.address);
     case PRICING:

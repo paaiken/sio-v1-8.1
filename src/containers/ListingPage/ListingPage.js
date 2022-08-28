@@ -52,6 +52,11 @@ import SectionHostMaybe from './SectionHostMaybe';
 import SectionRulesMaybe from './SectionRulesMaybe';
 import SectionMapMaybe from './SectionMapMaybe';
 import css from './ListingPage.module.css';
+import SectionBikeSizeMaybe from './SectionBikeSizeMaybe';
+
+
+
+
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
@@ -73,6 +78,11 @@ const priceData = (price, intl) => {
 const categoryLabel = (categories, key) => {
   const cat = categories.find(c => c.key === key);
   return cat ? cat.label : key;
+};
+
+const bikeSizeLabel = (bikeSizes, key) => {
+  const bike = bikeSizes.find(c => c.key === key);
+  return bike ? bike.label : key;
 };
 
 export class ListingPageComponent extends Component {
@@ -376,7 +386,8 @@ export class ListingPageComponent extends Component {
       </NamedLink>
     );
 
-    const amenityOptions = findOptionsForSelectFilter('amenities', filterConfig);
+
+    const bikeSizeOptions = findOptionsForSelectFilter('bikeSize', filterConfig);
     const categoryOptions = findOptionsForSelectFilter('category', filterConfig);
     const category =
       publicData && publicData.category ? (
@@ -385,14 +396,13 @@ export class ListingPageComponent extends Component {
           <span className={css.separator}>•</span>
         </span>
       ) : null;
-      
-    const bikeSize =
-      publicData && publicData.bikeSize ? (
-          <span>
-            {bikeSizeLabel(bikeSizeOptions, publicData.bikeSize)}
-            <span className={css.separator}>•</span>
-          </span>
-      ) : null;
+
+      const bikeSize = publicData && publicData.bikeSize ? (
+            <span>
+              {bikeSizeLabel(bikeSizeOptions, publicData.bikeSize)}
+              <span className={css.separator}>•</span>
+            </span>
+        ) : null;
 
     return (
       <Page
@@ -443,8 +453,8 @@ export class ListingPageComponent extends Component {
                     onContactUser={this.onContactUser}
                   />
                   <SectionDescriptionMaybe description={description} />
-                  <SectionFeaturesMaybe options={amenityOptions} publicData={publicData} />
-                  <SectionRulesMaybe publicData={publicData} />
+                  <SectionBikeSizeMaybe options={bikeSizeOptions} publicData={publicData} />
+
                   <SectionMapMaybe
                     geolocation={geolocation}
                     publicData={publicData}

@@ -43,7 +43,7 @@ const EditListingDescriptionPanel = props => {
 
   const categoryOptions = findOptionsForSelectFilter('category', config.custom.filters);
   const bikeSizeOptions = findOptionsForSelectFilter('bikeSize', config.custom.filters);
-
+console
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
